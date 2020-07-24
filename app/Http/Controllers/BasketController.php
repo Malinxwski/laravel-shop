@@ -18,7 +18,10 @@ class BasketController extends Controller
         $orderId = session('orderId');
         if(!is_null($orderId)){
             $order = Order::findOrFail($orderId);
+        }else{
+            return redirect(route('index'));
         }
+
         return view('basket',compact('order'));
     }
 
@@ -94,6 +97,7 @@ class BasketController extends Controller
         $success  = $order->saveOrder($request->name,$request->phone);
 
         session()->forget('orderId');
+
         if($success){
             session()->flash('success','Заказ принят в обработку');
         }else{

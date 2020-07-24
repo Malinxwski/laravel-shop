@@ -19,6 +19,9 @@ Auth::routes([
     'confirm'=>false,
     'verify'=>false,
 ]);
+Route::group(['namespace' => 'admin', 'prefix'=>'admin'], function(){
+    Route::resource('categories','CategoryController');
+});
 Route::get('/', 'MainController@index')->name('index');
 Route::get('/home','HomeController@index')->name('home');
 Route::get('/logout','Auth\LoginController@logout' )->name('get-logout');
@@ -40,10 +43,3 @@ Route::get('/{category}/{product?}', 'MainController@product')->name('product');
 
 
 
-
-
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

@@ -12,6 +12,7 @@ class MainController extends Controller
         $products = Product::get();
 
 
+
         return view('index', compact('products'));
     }
 
@@ -28,7 +29,7 @@ class MainController extends Controller
 
     public function product($category,$product=null ) {
 
-        $product = Product::where('code',$product)->first();
+        $product = Product::where('code', $product)->first();
         return view('product',['product'=>$product]);
     }
 }
