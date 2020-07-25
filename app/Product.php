@@ -12,6 +12,13 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function getCurrentProductCategory($product)
+    {
+        $category = Category::where('id', $product->category_id)->first();
+        return $name = $category->name;
+
+    }
+
     public function getPriceForCount()
     {
         if(!is_null($this->pivot)){
