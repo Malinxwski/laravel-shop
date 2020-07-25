@@ -48,11 +48,15 @@
                             <label for="name" class="col-sm-2 col-form-label">Категория: </label>
                         <div class="col-sm-6 d-inline-block">
                             <select class=" form-control d-inline-block" id="categories">
-                                @isset($product)
-                                <option selected   value="">{{$product->getCurrentProductCategory($product)}}</option>
-                                @endisset
+
                             @foreach($categories as $category)
-                                    <option value="">{{$category->name}}</option>
+                                    <option value="{{$category->id}}"
+                                    @isset($product)
+                                        @if($product->category_id == $category->id)
+                                            selected
+                                            @endif
+                                        @endisset
+                                    >{{$category->name}}</option>
                             @endforeach
                             </select>
                         </div>
@@ -79,6 +83,15 @@
                         </label>
                     </div>
                 </div>
+
+                    <br>
+                    <div class="input-group row">
+                        <label for="code" class="col-sm-2 col-form-label">Цена: </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="price" id="price"
+                                   value="@isset($product){{ $product->price }}@endisset">
+                        </div>
+                    </div>
                 <button class="btn btn-success">Сохранить</button>
             </div>
         </form>

@@ -4,7 +4,11 @@
 
 @section('content')
     <div class="col-md-12">
-        <h1>Товар {{$product->name}} </h1>
+        <div>
+            <h1 class="d-inline-block">Товар {{$product->name}} </h1>
+            <a class="btn btn-warning d-inline-block float-right" type="button" href="{{ route('products.edit', $product) }}">Редактировать</a>
+        </div>
+
         <table class="table">
             <tbody>
             <tr>
@@ -33,7 +37,7 @@
             </tr>
             <tr>
                 <td>Картинка</td>
-                <td><img src="http://laravel-diplom-1.rdavydov.ru/storage/categories/appliance.jpg"
+                <td><img src="{{Storage::url($product->image)}}"
                          height="240px"></td>
             </tr>
             <tr>

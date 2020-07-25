@@ -6,7 +6,7 @@
     <div class="col-md-12">
         <div>
             <h1 class="d-inline-block ">Товары</h1>
-            <a class="btn btn-success d-inline-block mb-3 float-right" type="button"
+            <a class="btn btn-info d-inline-block mb-3 float-right" type="button"
                href="{{ route('products.create') }}">Добавить товар</a>
         </div>
 
