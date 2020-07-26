@@ -38,7 +38,12 @@
                     <td>
                         <div class="btn-group" role="group">
                             <a class="btn btn-success" type="button"
-                               href="/">Открыть</a>
+                               @if(Auth::user()->isAdmin())
+                                     href="{{route('home.show',$order)}}">Открыть</a>
+                                @else
+                                     href="{{route('orders.show',$order)}}">Открыть</a>
+                                @endif
+
                         </div>
                     </td>
                 </tr>

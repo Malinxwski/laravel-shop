@@ -26,10 +26,10 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li ><a href="{{route('index')}}">Все товары</a></li>
-                <li class="active"><a href="{{route('categories')}}">Категории</a>
+                <li @routeactive('index')><a href="{{route('index')}}">Все товары</a></li>
+                <li @routeactive('categor*')><a href="{{route('categories')}}">Категории</a>
                 </li>
-                <li ><a href="{{route('basket')}}">В корзину</a></li>
+                <li @routeactive('basket')><a href="{{route('basket')}}">В корзину</a></li>
                 <li><a href="{{route('index')}}">Сбросить проект в начальное состояние</a></li>
                 <li><a href="/locale/en">en</a></li>
 
@@ -44,10 +44,15 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @guest
-                    <li><a href="{{route('login')}}">Панель администратора</a></li>
+                    <li><a href="{{route('login')}}">Войти</a></li>
                 @endguest
                 @auth
-                        <li><a href="{{route('home')}}">Панель администратора</a></li>
+                    @admin
+                            <li><a href="{{route('home')}}">Панель администратора</a></li>
+                        @else
+                            <li><a href="{{route('orders.index')}}">Заказы</a></li>
+
+                        @endadmin
                         <li><a href="{{route('logout')}}">Выйти</a></li>
                 @endauth
 

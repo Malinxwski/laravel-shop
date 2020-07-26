@@ -23,8 +23,17 @@ Route::group(['namespace' => 'admin', 'prefix'=>'admin'], function(){
     Route::resource('categories','CategoryController');
     Route::resource('products','ProductController');
 });
+
+Route::group(['namespace'=>'person','prefix'=>'person'],function(){
+   Route::get('/orders', 'OrderController@index')->name('orders.index');
+    Route::get('/orders/{order}', 'OrderController@show')->name('orders.show');
+});
+
+
+
 Route::get('/', 'MainController@index')->name('index');
 Route::get('/home','HomeController@index')->name('home');
+Route::get('/home/{order}','HomeController@show')->name('home.show');
 Route::get('/logout','Auth\LoginController@logout' )->name('get-logout');
 Route::get('/categories', 'MainController@categories')->name('categories');
 
@@ -35,6 +44,7 @@ Route::group(['middleware'=>'basket_not_empty', 'prefix'=>'basket'], function(){
     Route::post('/place','BasketController@basketConfirm')->name('basket-confirm');
     Route::post('/remove/{id}', 'BasketController@basketRemove')->name('basket-remove');
 });
+
 Route::get('/{category?}', 'MainController@category')->name('category');
 Route::get('/{category}/{product?}', 'MainController@product')->name('product');
 

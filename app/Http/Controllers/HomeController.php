@@ -29,4 +29,13 @@ class HomeController extends Controller
 
         return view('auth.orders.index', compact('orders'));
     }
+
+    public function show(Order $order){
+
+       if(Auth::user()->orders()->contains($order)){
+           return redirect(route('orders.index'));
+       }
+
+         return view('auth.orders.show',compact('order'));
+    }
 }
